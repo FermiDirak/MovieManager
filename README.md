@@ -5,8 +5,8 @@
 
 - [X] Display a list of movies from data hardcoded in your index.jsx.
 - [X] Add a search bar so that a user may see if a movie is in the list.
-- [ ] After a user submits the search, display all matches (or partial matches) to that title.
-- [ ] Bonus: Handle the case of no movie by that name found gracefully.
+- [X] After a user submits the search, display all matches (or partial matches) to that title.
+- [X] Bonus: Handle the case of no movie by that name found gracefully.
 - [ ] Add an input field for users to add movies.
 - [ ] Add a button to each list item that allows the user to toggle a 'watched' property.
 - [ ] Add two buttons to allow the users to toggle between a list of 'watched' movies and movies 'to watch'.

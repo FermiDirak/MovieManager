@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM  from 'react-dom';
+
+import MoviesList from './components/MoviesList.jsx';
 import Search from './components/Search.jsx';
 import NoMovie from './components/NoMovie.jsx';
 
@@ -15,7 +17,6 @@ class MovieList extends React.Component {
         {title: 'Ex Machina'},
       ],
       selectedMovies: [
-
       ],
     }
   }
@@ -28,8 +29,6 @@ class MovieList extends React.Component {
     var selectedMovies = this.state.movies.filter(function(movie) {
       return movie.title.toLowerCase().includes(searchText);
     });
-
-    console.log(selectedMovies);
 
     this.setState({selectedMovies: selectedMovies});
   }
@@ -53,19 +52,13 @@ class MovieList extends React.Component {
       },
     }
 
-    let moviesList = this.state.selectedMovies.map(function(movie, index) {
-      return <div key={index}>{movie.title}</div>
-    });
-
-    console.log(moviesList);
-
     return (
       <div style={styles.app}>
         <span style={styles.header}>Movies List</span>
         <Search onSearch={(searchText) => {this.onSearch(searchText)}}/>
         {
-          moviesList.length !== 0
-            ? moviesList
+          this.state.selectedMovies.length !== 0
+            ? <MoviesList movies={this.state.selectedMovies}/>
             : <NoMovie/>
         }
       </div>

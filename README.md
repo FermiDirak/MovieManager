@@ -1,6 +1,5 @@
 # Movie List App
 
-
 ## Level 1 - Front end
 
 - [X] Display a list of movies from data hardcoded in your index.jsx.

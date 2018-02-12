@@ -11,8 +11,6 @@ var MovieList = (props) => {
 	let style = {
 		display: 'flex',
 		flexDirection: 'column',
-		height: '100%',
-		overflow: 'scroll',
 	}
 
 	let moviesList = movies.map(function(movie, index) {

@@ -50,9 +50,9 @@ class MovieList extends React.Component {
         display: 'flex',
         flexDirection: 'column',
         width: '600px',
-        height: '500px',
         margin: 'auto',
         marginTop: '75px',
+        marginBottom: '75px',
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
       },
 

@@ -18,18 +18,38 @@ class Movie extends React.Component {
 	}
 
 	render() {
-		let style = {
-			margin: '8px',
-			padding: '8px',
-			width: '400px',
-			borderRadius: '4px',
+		let styles = {
+			container: {
+				margin: '8px',
+				padding: '8px',
+				width: '400px',
+				borderRadius: '4px',
+			},
+			briefInfo: {
+				display: 'flex',
+				flexDirection: 'row',
+				justifyContent: 'space-between',
+			},
+			briefText: {
+				cursor: 'pointer',
+			},
+			watchedButton: {
+				color: 'grey',
+				cursor: 'pointer',
+			}
 		}
 
 		return (
-			<span style={style}
-				onClick={() => {this.onClick()}}
-			>
-				{this.props.movie.title}
+			<span style={styles.container}>
+				<div style={styles.briefInfo}>
+					<p style={styles.briefText}
+						onClick={() => {this.onClick()}}
+					>
+						{this.props.movie.title}
+					</p>
+
+					<p style={styles.watchedButton}> watched? </p>
+				</div>
 				{
 					this.state.toggled && this.props.movie.description
 						? <MovieDetails movie={this.props.movie}/>

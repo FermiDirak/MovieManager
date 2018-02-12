@@ -7,6 +7,7 @@ var NoMovie = () => {
 		width: '100%',
 		textAlign: 'center',
 		color: 'grey',
+		margin: '16px',
 	}
 	return (
 		<span style={style}>

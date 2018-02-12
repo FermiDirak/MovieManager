@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM  from 'react-dom';
 
-import MoviesList from './components/MoviesList.jsx';
 import Search from './components/Search.jsx';
+import AddMovie from './components/AddMovie.jsx';
+import MoviesList from './components/MoviesList.jsx';
 import NoMovie from './components/NoMovie.jsx';
 
 class MovieList extends React.Component {
@@ -10,13 +11,14 @@ class MovieList extends React.Component {
     super();
     this.state = {
       movies: [
-        {title: 'Mean Girls'},
-        {title: 'Hackers'},
-        {title: 'The Grey'},
-        {title: 'Sunshine'},
-        {title: 'Ex Machina'},
+        {title: 'Mean Girls', description: 'Really cool movie'},
+        {title: 'Hackers', description: 'haha thats a good movie'},
+        {title: 'The Grey', description: 'Whats up grey'},
+        {title: 'Sunshine', description: 'Boring snooze fest'},
+        {title: 'Ex Machina', description: 'I kinda liked it'},
       ],
       selectedMovies: [
+        /* filled in by search */
       ],
     }
   }
@@ -31,6 +33,15 @@ class MovieList extends React.Component {
     });
 
     this.setState({selectedMovies: selectedMovies});
+  }
+
+  onAdd(movieTitle) {
+    var movies = this.state.movies;
+    movies.push({title: movieTitle, description: 'no desc'});
+
+    this.setState({movies: movies});
+
+    this.onSearch('');
   }
 
   render() {
@@ -56,11 +67,15 @@ class MovieList extends React.Component {
       <div style={styles.app}>
         <span style={styles.header}>Movies List</span>
         <Search onSearch={(searchText) => {this.onSearch(searchText)}}/>
+
         {
           this.state.selectedMovies.length !== 0
             ? <MoviesList movies={this.state.selectedMovies}/>
             : <NoMovie/>
         }
+
+        <AddMovie onSubmit={(movieTitle) => {this.onAdd(movieTitle)}}/>
+
       </div>
     );
   }

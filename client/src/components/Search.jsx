@@ -60,7 +60,7 @@ class Search extends React.Component {
 }
 
 Search.propTypes = {
-	onSearch: PropTypes.func,
+	onSearch: PropTypes.func //takes in the text in the input field,
 }
 
 export default Search;

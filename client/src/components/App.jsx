@@ -10,15 +10,13 @@ class App extends React.Component {
     super();
     this.state = {
       movies: [
-        {title: 'Mean Girls', description: 'Really cool movie'},
-        {title: 'Hackers', description: 'haha thats a good movie'},
-        {title: 'The Grey', description: 'Whats up grey'},
-        {title: 'Sunshine', description: 'Boring snooze fest'},
-        {title: 'Ex Machina', description: 'I kinda liked it'},
+        {title: 'Mean Girls', description: 'Really cool movie', watched: false},
+        {title: 'Hackers', description: 'haha thats a good movie', watched: false},
+        {title: 'The Grey', description: 'Whats up grey', watched: false},
+        {title: 'Sunshine', description: 'Boring snooze fest', watched: false},
+        {title: 'Ex Machina', description: 'I kinda liked it', watched: false},
       ],
-      selectedMovies: [
-        /* filled in by search */
-      ],
+			filterText: '',
     }
   }
 
@@ -26,19 +24,18 @@ class App extends React.Component {
     this.onSearch('');
   }
 
+	/** Called when user searches for a movie
+	 *  @param {string} searchText Text to filter by */
   onSearch(searchText) {
-    var selectedMovies = this.state.movies.filter(function(movie) {
-      return movie.title.toLowerCase().includes(searchText);
-    });
-
-    this.setState({selectedMovies: selectedMovies});
+		this.setState({filterText: searchText});
   }
 
+	/** Called to add a movie to the movies list
+	 * @param {string} movieTitle Title of movie to add to list */
   onAdd(movieTitle) {
     var movies = this.state.movies;
     movies.push({title: movieTitle, description: 'no desc'});
-
-    this.setState({movies: movies});
+		this.setState({movies: movies});
 
     this.onSearch('');
   }
@@ -49,7 +46,7 @@ class App extends React.Component {
         display: 'flex',
         flexDirection: 'column',
         width: '600px',
-        // margin: '75px auto',
+        margin: 'auto',
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 			},
       header: {
@@ -65,9 +62,14 @@ class App extends React.Component {
         <Search onSearch={(searchText) => {this.onSearch(searchText)}}/>
 
         {
-          this.state.selectedMovies.length !== 0
-            ? <MoviesList movies={this.state.selectedMovies}/>
-            : <NoMovie/>
+          this.state.movies.length !== 0 ?
+						<MoviesList movies={
+							this.state.movies.filter((movie) => {
+								return movie.title.toLowerCase().includes(this.state.filterText.toLowerCase());
+							})
+						}/>
+            :
+						<NoMovie/>
         }
 
         <AddMovie onSubmit={(movieTitle) => {this.onAdd(movieTitle)}}/>
